@@ -1,8 +1,5 @@
 import json
 from flask import Flask, render_template, request, redirect, flash, url_for
-from datetime import datetime
-
-
 
 def loadClubs():
     with open('clubs.json') as c:
@@ -26,7 +23,7 @@ clubs = loadClubs()
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+     return render_template('index.html')
 
 @app.route('/showSummary',methods=['POST'])
 def showSummary():
@@ -39,23 +36,19 @@ def book(competition, club):
     foundClub = [c for c in clubs if c['name'] == club][0]
     foundCompetition = [c for c in competitions if c['name'] == competition][0]
     if foundClub and foundCompetition:
-        # if datetime.strptime(competition['date'], '%Y-%m-%d %H:%M:%S') < datetime.now():
-        #     return flash("You cannot book places in a past competition")
-        # else:
-            return render_template('booking.html', club=foundClub, competition=foundCompetition)
+        return render_template('booking.html', club=foundClub, competition=foundCompetition)
     else:
         flash("Something went wrong-please try again")
         return render_template('welcome.html', club=club, competitions=competitions)
 
 
-@app.route('/purchasePlaces',methods=['POST'])
+@app.route('/purchasePlaces', methods=['POST'])
 def purchasePlaces():
     competition = [c for c in competitions if c['name'] == request.form['competition']][0]
     club = [c for c in clubs if c['name'] == request.form['club']][0]
     placesRequired = int(request.form['places'])
-    if 12 >= placesRequired >= 0 and placesRequired <= int(club['points']):
+    if placesRequired <= int(club['points']) and placesRequired > 0:
         club['points'] = int(club['points']) - placesRequired
-        competition['numberOfPlaces'] = int(competition['numberOfPlaces']) - placesRequired
         flash('Great-booking complete!')
         flash(f"Booking complete for {placesRequired} places")
     else:
@@ -63,8 +56,7 @@ def purchasePlaces():
             flash('Error : the number of places must be a positive number !')
         elif placesRequired > int(club['points']):
             flash('Sorry! you do not have enough point to book')
-        else:
-            flash('You do not have permission to book more than 12 places')
+
 
     return render_template('welcome.html', club=club, competitions=competitions)
 
