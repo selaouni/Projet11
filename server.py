@@ -1,5 +1,7 @@
 import json
-from flask import Flask, render_template, request, redirect, flash, url_for
+from flask import Flask, render_template, request, redirect, flash, url_for, make_response
+from datetime import datetime
+
 
 
 def loadClubs():
@@ -41,7 +43,11 @@ def book(competition, club):
     foundClub = [c for c in clubs if c['name'] == club][0]
     foundCompetition = [c for c in competitions if c['name'] == competition][0]
     if foundClub and foundCompetition:
-        return render_template('booking.html', club=foundClub, competition=foundCompetition)
+        if datetime.strptime(foundCompetition['date'], '%Y-%m-%d %H:%M:%S') < datetime.now():
+            response = make_response("<p>You cannot book places in a past competition<p>")
+            return response
+        else:
+            return render_template('booking.html', club=foundClub, competition=foundCompetition)
     else:
         flash("Something went wrong-please try again")
         return render_template('welcome.html', club=club, competitions=competitions)
@@ -66,7 +72,6 @@ def purchasePlaces():
             flash('You do not have permission to book more than 12 places')
 
     return render_template('welcome.html', club=club, competitions=competitions)
-
 
 
 # TODO: Add route for points display
