@@ -22,12 +22,19 @@ app.secret_key = 'something_special'
 competitions = loadCompetitions()
 clubs = loadClubs()
 
+def create_app(config):
+    app = Flask(__name__)
+    app.config.from_object(config)
 
+    @app.route('/')
+    def index():
+        return render_template('index.html')
+
+    return app
 
 @app.route('/')
 def index():
     return render_template('index.html')
-
 @app.route('/showSummary',methods=['POST'])
 def showSummary():
     try:
