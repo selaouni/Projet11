@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Points dashboard</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+</head>
+<body>
+<h2> Points by club </h2>
+{%block body_main%}
+<div class="container my-5">
+	<div class="row">
+		<div class="TDB">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Club name</th>
+						<th>Available points</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					{%for c in club%}
+					<tr>
+						<td>{{c["name"]}}</td>
+
+						<td>{{c["points"]}}</td>
+
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{%endblock%}
+
+</body>
+</html>
