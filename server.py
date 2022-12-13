@@ -2,17 +2,17 @@ import json
 from flask import Flask, render_template, request, redirect, flash, url_for, make_response
 from datetime import datetime
 
-
-
 def loadClubs():
     with open('clubs.json') as c:
          listOfClubs = json.load(c)['clubs']
+         print("testo club", listOfClubs)
          return listOfClubs
 
 
 def loadCompetitions():
     with open('competitions.json') as comps:
          listOfCompetitions = json.load(comps)['competitions']
+         print("testo comp", listOfCompetitions)
          return listOfCompetitions
 
 
@@ -23,18 +23,20 @@ competitions = loadCompetitions()
 clubs = loadClubs()
 
 def create_app(config):
-    app = Flask(__name__)
-    app.config.from_object(config)
-
+    application = Flask(__name__)
+    application.config.from_object(config)
     @app.route('/')
     def index():
         return render_template('index.html')
 
-    return app
+    return application
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
 @app.route('/showSummary',methods=['POST'])
 def showSummary():
     try:
