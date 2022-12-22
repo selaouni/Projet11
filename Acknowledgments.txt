@@ -1,0 +1,21 @@
+Acknowledgments (code inspiration):
+
+
+https://python.developpez.com/tutoriel/intro-flask-python3/#:~:text=Flask%20utilise%20un%20simple%20serveur,dans%20un%20d%C3%A9ploiement%20de%20production.
+
+https://stackoverflow.com/questions/71153840/how-to-flash-message-with-variables-in-flask
+
+
+https://openclassrooms.com/forum/sujet/bordure-qui-ne-s-affiche-pas
+
+https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-fr
+
+
+https://www.digitalocean.com/community/tutorials/python-string-to-datetime-strptime
+
+https://alemangui.github.io/locust
+
+https://stackoverflow.com/questions/62090745/importerror-the-httplocust-class-has-been-renamed-to-httpuser-in-version-1-0
+
+https://docs.locust.io/en/stable/writing-a-locustfile.html#taskset-class
+
