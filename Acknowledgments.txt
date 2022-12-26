@@ -5,7 +5,6 @@ https://python.developpez.com/tutoriel/intro-flask-python3/#:~:text=Flask%20util
 
 https://stackoverflow.com/questions/71153840/how-to-flash-message-with-variables-in-flask
 
-
 https://openclassrooms.com/forum/sujet/bordure-qui-ne-s-affiche-pas
 
 https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3-fr
